@@ -3,12 +3,14 @@ package test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
-import page.WebDriverPastebinHomePage;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import page.PastebinHomePage;
 
 import java.time.Duration;
 
-public class WebDriverPastebinCreatingNewPastTest {
+public class PastebinCreatingNewPastTest {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
@@ -20,10 +22,12 @@ public class WebDriverPastebinCreatingNewPastTest {
     @Test(description = "It's a first test")
     public void newPasteCreateNewItem() {
         new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebDriverPastebinHomePage homePage = new WebDriverPastebinHomePage(driver)
+        PastebinHomePage homePage = new PastebinHomePage(driver)
                 .openPage()
                 .acceptCookies()
-                .enterValues()
+                .enterCode()
+                .enterName()
+                .enterExpiration()
                 .createNewPaste();
     }
 
